@@ -1,15 +1,18 @@
-"""Flask application entry point for qa-langgraph."""
-
 import logging
 import os
 
 from flask import Flask, jsonify, request
 
-from agent import run_agent
+from src.agent import run_agent
 
 app = Flask(__name__)
 logger = logging.getLogger(__name__)
 
+import logging
+from src import agent
+
+# enable debug logging for the agent module and handler
+agent.configure_logging(logging.DEBUG)
 
 @app.route("/run", methods=["POST"])
 def run():
